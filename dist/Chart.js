@@ -1,7 +1,7 @@
 /*!
  * Chart.js v2.9.4
  * https://www.chartjs.org
- * (c) 2020 Chart.js Contributors
+ * (c) 2021 Chart.js Contributors
  * Released under the MIT License
  */
 (function (global, factory) {
@@ -11929,7 +11929,9 @@ var Scale = core_element.extend({
 		var labelSizes = me._labelSizes;
 
 		if (!labelSizes) {
-			me._labelSizes = labelSizes = computeLabelSizes(me.ctx, parseTickFontOptions(me.options.ticks), me.getTicks(), me.longestTextCache);
+			labelSizes = computeLabelSizes(me.ctx, parseTickFontOptions(me.options.ticks), me.getTicks(), me.longestTextCache);
+			if (me.options.ticks.overrideWidth) labelSizes.widest.width = me.options.ticks.overrideWidth;
+			me._labelSizes = labelSizes;
 			me.longestLabelWidth = labelSizes.widest.width;
 		}
 

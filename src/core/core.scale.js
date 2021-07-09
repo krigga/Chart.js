@@ -833,7 +833,9 @@ var Scale = Element.extend({
 		var labelSizes = me._labelSizes;
 
 		if (!labelSizes) {
-			me._labelSizes = labelSizes = computeLabelSizes(me.ctx, parseTickFontOptions(me.options.ticks), me.getTicks(), me.longestTextCache);
+			labelSizes = computeLabelSizes(me.ctx, parseTickFontOptions(me.options.ticks), me.getTicks(), me.longestTextCache);
+			if (me.options.ticks.overrideWidth) labelSizes.widest.width = me.options.ticks.overrideWidth;
+			me._labelSizes = labelSizes;
 			me.longestLabelWidth = labelSizes.widest.width;
 		}
 
